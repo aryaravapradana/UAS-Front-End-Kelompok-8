@@ -260,7 +260,7 @@
 
 .talksWhyHeader {
   position: relative;
-  z-index: 2;
+  z-index: 10;
   margin-bottom: 4rem;
 }
 
@@ -308,6 +308,7 @@
   transform: translateY(-50%);
   width: 35%;
   max-width: 400px;
+  z-index: 10;
 }
 
 .talksWhyCardsLeft .talksFeatureBox:first-child {
@@ -329,6 +330,7 @@
   transform: translateY(-50%);
   width: 35%;
   max-width: 400px;
+  z-index: 10;
 }
 
 .talksWhyCardsRight .talksFeatureBox:first-child {
