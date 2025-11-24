@@ -8,6 +8,8 @@ import Image from 'next/image';
 import Link from 'next/link';
 import FadeInOnScroll from '../components/FadeInOnScroll';
 import LombaDetailModal from '../components/LombaDetailModal';
+import BeasiswaDetailModal from '../components/BeasiswaDetailModal';
+import API from '@/lib/api';
 
 async function getBeasiswa() {
   const res = await fetch('http://127.0.0.1:3001/api/beasiswas', { cache: 'no-store' });
@@ -97,7 +99,23 @@ export default function InfoPage() {
 function InfoHeroSection() {
   return (
     <section className={styles.infoHeroSection}>
-      <div className="container">
+      <Image
+        src="/decorative-ellipse-yellow.svg"
+        alt="Decorative Ellipse"
+        width={894}
+        height={824}
+        className={styles.decorativeEllipse}
+        unoptimized
+      />
+      <Image
+        src="/decorative-ellipse-yellow.svg"
+        alt="Decorative Ellipse Right"
+        width={894}
+        height={824}
+        className={styles.decorativeEllipseRight}
+        unoptimized
+      />
+      <div className="container" style={{ position: 'relative', zIndex: 3 }}>
         <div className="row align-items-center min-vh-100">
           <div className="col-lg-12">
             <div className={styles.infoHeroContent}>
@@ -211,54 +229,20 @@ function InfoWhyJoinSection() {
 
 function InfoOpportunitiesSection({ beasiswaData, lombaData, loading, openLombaModal }) {
   const [activeTab, setActiveTab] = useState('scholarships');
+  const [selectedBeasiswa, setSelectedBeasiswa] = useState(null);
 
-  if (loading) {
-    return (
-      <section className={styles.infoOpportunitiesSection}>
-        <div className="container">
-          <div className="text-center mb-5">
-            <div className={styles.infoOpportunitiesTitleWrapper}>
-              <span className={`${styles.infoOppDot} ${styles.infoOppDotLeft}`}></span>
-              <h2 className={styles.infoOpportunitiesTitle}>
-                Opportunity List<br />
-                Section
-              </h2>
-              <span className={`${styles.infoOppDot} ${styles.infoOppDotRight}`}></span>
-            </div>
-            <p className={styles.infoOpportunitiesSubtitle}>
-              Discover curated scholarships, competitions, and tech programs designed to help FTI students grow academically and professionally.
-            </p>
-            
-            <div className={styles.infoOpportunitiesTabs}>
-              <button className={`${styles.infoTabBtn} ${styles.infoTabActive}`}>
-                Scholarships
-              </button>
-              <button className={styles.infoTabBtn}>
-                Competition
-              </button>
-            </div>
-          </div>
+  const openBeasiswaModal = (beasiswa) => {
+    setSelectedBeasiswa(beasiswa);
+  };
 
-          <div className={`row g-4 justify-content-center ${styles.featureCardsContainer}`}>
-            {[1, 2, 3].map((i) => (
-              <div key={i} className="col-lg-4 col-md-6">
-                <div className={`${styles.infoCard} ${styles.skeletonCard}`}>
-                  <div className={`${styles.infoCardImage} ${styles.skeleton}`}></div>
-                  <div className={styles.infoCardContent}>
-                    <div className={`${styles.skeletonText} ${styles.skeletonDate}`}></div>
-                    <div className={`${styles.skeletonText} ${styles.skeletonTitle}`}></div>
-                    <div className={`${styles.skeletonText} ${styles.skeletonDesc}`}></div>
-                    <div className={`${styles.skeletonText} ${styles.skeletonDesc}`}></div>
-                    <div className={`${styles.skeletonButton}`}></div>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-    );
-  }
+  const closeBeasiswaModal = () => {
+    setSelectedBeasiswa(null);
+  };
+
+  const formatDate = (dateString) => {
+    const options = { year: 'numeric', month: 'long', day: 'numeric' };
+    return new Date(dateString).toLocaleDateString(undefined, options);
+  };
 
   return (
     <section className={styles.infoOpportunitiesSection}>
@@ -292,185 +276,100 @@ function InfoOpportunitiesSection({ beasiswaData, lombaData, loading, openLombaM
           </div>
         </div>
 
-        <div className={`row g-4 justify-content-center ${styles.featureCardsContainer}`}>
-          {activeTab === 'scholarships' && (
+        <div className={styles.trackCards}>
+          {loading ? (
+             <p className="text-center">Loading opportunities...</p>
+          ) : activeTab === 'scholarships' ? (
             beasiswaData.length > 0 ? (
               beasiswaData.map((beasiswa) => (
-                <div key={beasiswa.id} className="col-lg-4 col-md-6">
-                  <div className={styles.infoCard}>
-                    <div className={styles.infoCardImage}>
-                      <Image 
-                        src={beasiswa.posterUrl || '/info/default-beasiswa.png'} 
-                        alt={beasiswa.nama_beasiswa || 'Scholarship'}
-                        width={400}
-                        height={300}
-                        style={{ objectFit: 'cover' }}
-                      />
+                <div key={beasiswa.id} className={styles.opportunityCard}>
+                  <div className={styles.opportunityImage}>
+                    <Image 
+                      src={beasiswa.posterUrl || '/info/default-beasiswa.png'} 
+                      alt={beasiswa.nama_beasiswa || 'Scholarship'}
+                      fill
+                      className={styles.opportunityImg}
+                      style={{ objectFit: 'cover' }}
+                    />
+                  </div>
+                  <div className={styles.opportunityInfo}>
+                    <div className={styles.opportunityTitleRow}>
+                      <h3>{beasiswa.nama_beasiswa}</h3>
+                      <button 
+                        className={styles.opportunityBadge}
+                        onClick={() => openBeasiswaModal(beasiswa)}
+                      >
+                        See Details
+                      </button>
                     </div>
-                    <div className={styles.infoCardContent}>
-                      <div className={styles.infoCardDate}>JUNE 24, 2025</div>
-                      <h3 className={styles.infoCardTitle}>Google Developer Scholarship</h3>
-                      <p className={styles.infoCardDesc}>Learn web development fundamentals with mentorship and certification directly from Google.</p>
-                      <button className={styles.infoCardBtn}>See Details</button>
-                    </div>
+                    <ul className={styles.opportunityDetails}>
+                      <li>
+                        <Image src="/bootcamp/material-symbols_date-range.png" alt="" width={14} height={14} />
+                        <span>Deadline: {formatDate(beasiswa.tanggal_deadline)}</span>
+                      </li>
+                      <li>
+                        <Image src="/bootcamp/person_icon.png" alt="" width={14} height={14} />
+                        <span>By: {beasiswa.penyelenggara}</span>
+                      </li>
+                    </ul>
                   </div>
                 </div>
               ))
             ) : (
-              <>
-                <div className="col-lg-4 col-md-6">
-                  <div className={styles.infoCard}>
-                    <div className={styles.infoCardImage}>
-                      <Image 
-                        src="/info/default-beasiswa.png" 
-                        alt="Google Developer Scholarship"
-                        width={400}
-                        height={300}
-                        style={{ objectFit: 'cover' }}
-                      />
-                    </div>
-                    <div className={styles.infoCardContent}>
-                      <div className={styles.infoCardDate}>JUNE 24, 2025</div>
-                      <h3 className={styles.infoCardTitle}>Google Developer Scholarship</h3>
-                      <p className={styles.infoCardDesc}>Learn web development fundamentals with mentorship and certification directly from Google.</p>
-                      <button className={styles.infoCardBtn}>See Details</button>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-lg-4 col-md-6">
-                  <div className={styles.infoCard}>
-                    <div className={styles.infoCardImage}>
-                      <Image 
-                        src="/info/default-beasiswa.png" 
-                        alt="Google Developer Scholarship"
-                        width={400}
-                        height={300}
-                        style={{ objectFit: 'cover' }}
-                      />
-                    </div>
-                    <div className={styles.infoCardContent}>
-                      <div className={styles.infoCardDate}>JUNE 24, 2025</div>
-                      <h3 className={styles.infoCardTitle}>Google Developer Scholarship</h3>
-                      <p className={styles.infoCardDesc}>Learn web development fundamentals with mentorship and certification directly from Google.</p>
-                      <button className={styles.infoCardBtn}>See Details</button>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-lg-4 col-md-6">
-                  <div className={styles.infoCard}>
-                    <div className={styles.infoCardImage}>
-                      <Image 
-                        src="/info/default-beasiswa.png" 
-                        alt="Google Developer Scholarship"
-                        width={400}
-                        height={300}
-                        style={{ objectFit: 'cover' }}
-                      />
-                    </div>
-                    <div className={styles.infoCardContent}>
-                      <div className={styles.infoCardDate}>JUNE 24, 2025</div>
-                      <h3 className={styles.infoCardTitle}>Google Developer Scholarship</h3>
-                      <p className={styles.infoCardDesc}>Learn web development fundamentals with mentorship and certification directly from Google.</p>
-                      <button className={styles.infoCardBtn}>See Details</button>
-                    </div>
-                  </div>
-                </div>
-              </>
+              <p className="text-center">No scholarships available.</p>
             )
-          )}
-
-          {activeTab === 'competition' && (
+          ) : (
             lombaData.length > 0 ? (
               lombaData.map((lomba) => (
-                <div key={lomba.id} className="col-lg-4 col-md-6">
-                  <div className={styles.infoCard}>
-                    <div className={styles.infoCardImage}>
-                      <Image 
-                        src={lomba.posterUrl || '/info/default-lomba.png'} 
-                        alt={lomba.nama_lomba || 'Competition'}
-                        width={400}
-                        height={300}
-                        style={{ objectFit: 'cover' }}
-                      />
-                    </div>
-                    <div className={styles.infoCardContent}>
-                      <div className={styles.infoCardDate}>JUNE 24, 2025</div>
-                      <h3 className={styles.infoCardTitle}>{lomba.nama_lomba}</h3>
-                      <p className={styles.infoCardDesc}>{lomba.penyelenggara}</p>
+                <div key={lomba.id} className={styles.opportunityCard}>
+                  <div className={styles.opportunityImage}>
+                    <Image 
+                      src={lomba.posterUrl || '/info/default-lomba.png'} 
+                      alt={lomba.nama_lomba || 'Competition'}
+                      fill
+                      className={styles.opportunityImg}
+                      style={{ objectFit: 'cover' }}
+                    />
+                  </div>
+                  <div className={styles.opportunityInfo}>
+                    <div className={styles.opportunityTitleRow}>
+                      <h3>{lomba.nama_lomba}</h3>
                       <button 
-                        className={styles.infoCardBtn}
+                        className={styles.opportunityBadge}
                         onClick={() => openLombaModal(lomba)}
                       >
                         See Details
                       </button>
                     </div>
+                    <ul className={styles.opportunityDetails}>
+                      <li>
+                        <Image src="/bootcamp/material-symbols_date-range.png" alt="" width={14} height={14} />
+                        <span>Deadline: {formatDate(lomba.tanggal_deadline)}</span>
+                      </li>
+                      <li>
+                        <Image src="/bootcamp/person_icon.png" alt="" width={14} height={14} />
+                        <span>By: {lomba.penyelenggara}</span>
+                      </li>
+                      <li>
+                        <Image src="/bootcamp/si_pin-fill.png" alt="" width={14} height={14} />
+                        <span>Fee: {lomba.biaya_daftar ? `Rp ${lomba.biaya_daftar.toLocaleString()}` : 'Free'}</span>
+                      </li>
+                    </ul>
                   </div>
                 </div>
               ))
             ) : (
-              <>
-                <div className="col-lg-4 col-md-6">
-                  <div className={styles.infoCard}>
-                    <div className={styles.infoCardImage}>
-                      <Image 
-                        src="/info/default-lomba.png" 
-                        alt="Tech Competition"
-                        width={400}
-                        height={300}
-                        style={{ objectFit: 'cover' }}
-                      />
-                    </div>
-                    <div className={styles.infoCardContent}>
-                      <div className={styles.infoCardDate}>JUNE 24, 2025</div>
-                      <h3 className={styles.infoCardTitle}>Tech Competition</h3>
-                      <p className={styles.infoCardDesc}>Compete with fellow students in exciting tech challenges.</p>
-                      <button className={styles.infoCardBtn}>See Details</button>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-lg-4 col-md-6">
-                  <div className={styles.infoCard}>
-                    <div className={styles.infoCardImage}>
-                      <Image 
-                        src="/info/default-lomba.png" 
-                        alt="Tech Competition"
-                        width={400}
-                        height={300}
-                        style={{ objectFit: 'cover' }}
-                      />
-                    </div>
-                    <div className={styles.infoCardContent}>
-                      <div className={styles.infoCardDate}>JUNE 24, 2025</div>
-                      <h3 className={styles.infoCardTitle}>Tech Competition</h3>
-                      <p className={styles.infoCardDesc}>Compete with fellow students in exciting tech challenges.</p>
-                      <button className={styles.infoCardBtn}>See Details</button>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-lg-4 col-md-6">
-                  <div className={styles.infoCard}>
-                    <div className={styles.infoCardImage}>
-                      <Image 
-                        src="/info/default-lomba.png" 
-                        alt="Tech Competition"
-                        width={400}
-                        height={300}
-                        style={{ objectFit: 'cover' }}
-                      />
-                    </div>
-                    <div className={styles.infoCardContent}>
-                      <div className={styles.infoCardDate}>JUNE 24, 2025</div>
-                      <h3 className={styles.infoCardTitle}>Tech Competition</h3>
-                      <p className={styles.infoCardDesc}>Compete with fellow students in exciting tech challenges.</p>
-                      <button className={styles.infoCardBtn}>See Details</button>
-                    </div>
-                  </div>
-                </div>
-              </>
+              <p className="text-center">No competitions available.</p>
             )
           )}
         </div>
       </div>
+
+      <BeasiswaDetailModal 
+        isOpen={!!selectedBeasiswa} 
+        onClose={closeBeasiswaModal} 
+        beasiswa={selectedBeasiswa} 
+      />
     </section>
   );
 }
