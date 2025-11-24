@@ -66,7 +66,7 @@ function TalksHeroSection() {
     <section className={styles.talksHeroSection}>
       <div className="container">
         <div className="row align-items-center min-vh-100">
-          <div className="col-lg-12">
+          <div className="col-lg-6">
             <div className={styles.talksHeroContent}>
               <h1 className={styles.talksHeroTitle}>
                 Where Ideas<br />
@@ -81,6 +81,20 @@ function TalksHeroSection() {
                 <button className={styles.talksBtnRegister}>Register Now</button>
                 <button className={styles.talksBtnExplore}>Explore Now</button>
               </div>
+            </div>
+          </div>
+          
+          <div className="col-lg-6">
+            <div className={styles.talksHeroImageWrapper}>
+              <Image 
+                src="/mic.png" 
+                alt="Microphone"
+                width={600}
+                height={600}
+                className={styles.talksHeroMic}
+                priority
+                style={{ objectFit: 'contain' }}
+              />
             </div>
           </div>
         </div>
@@ -160,6 +174,18 @@ function TalksWhyJoinSection() {
               <div className={styles.talksFeatureBox}>
                 <h4>Networking with speakers and fellow students</h4>
               </div>
+            </div>
+            
+            <div className={styles.talksWhyCenterImage}>
+              <Image 
+                src="/talkssection2.png" 
+                alt="UCCD Talks"
+                width={800}
+                height={800}
+                className={styles.talksWhyImage}
+                priority
+                style={{ objectFit: 'contain' }}
+              />
             </div>
             
             <div className={styles.talksWhyCardsRight}>
@@ -328,7 +354,7 @@ function WhatsInItForYouSection() {
         </div>
 
         <div className={`row gy-4 justify-content-center ${styles.featureCardsContainer}`}>
-          <div className="col-lg-3 col-md-6" key="bootcamp-col">
+          <div className="col-lg-4 col-md-6" key="bootcamp-col">
             <Link href="/bootcamp" className={`${styles.featureCard} ${styles.bootcampCard} shadow-sm`}>
               <Image src="/bootcamp.png" width={64} height={64} alt="Bootcamp" className={styles.featureImg} />
               <h3>BOOTCAMP</h3>
@@ -336,7 +362,7 @@ function WhatsInItForYouSection() {
             </Link>
           </div>
 
-          <div className="col-lg-3 col-md-6" key="info-col">
+          <div className="col-lg-4 col-md-6" key="info-col">
             <Link href="/info" className={`${styles.featureCard} ${styles.infoCard} shadow-sm`}>
               <Image src="/info.png" width={64} height={64} alt="Info" className={styles.featureImg} />
               <h3>INFO</h3>
@@ -344,7 +370,7 @@ function WhatsInItForYouSection() {
             </Link>
           </div>
 
-          <div className="col-lg-3 col-md-6" key="glory-col">
+          <div className="col-lg-4 col-md-6" key="glory-col">
             <Link href="/glory" className={`${styles.featureCard} ${styles.gloryCard} shadow-sm`}>
               <Image src="/glory.png" width={64} height={64} alt="Glory" className={styles.featureImg} />
               <h3>GLORY</h3>
