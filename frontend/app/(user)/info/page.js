@@ -12,7 +12,7 @@ import BeasiswaDetailModal from '../components/BeasiswaDetailModal';
 import API from '@/lib/api';
 
 async function getBeasiswa() {
-  const res = await fetch('http://127.0.0.1:3001/api/beasiswas', { cache: 'no-store' });
+  const res = await fetch(API.beasiswas.list(), { cache: 'no-store' });
   if (!res.ok) {
     throw new Error('Failed to fetch beasiswa data from backend');
   }
@@ -20,7 +20,7 @@ async function getBeasiswa() {
 }
 
 async function getLomba() {
-  const res = await fetch('http://127.0.0.1:3001/api/lombas', { cache: 'no-store' });
+  const res = await fetch(API.lombas.list(), { cache: 'no-store' });
   if (!res.ok) {
     throw new Error('Failed to fetch lomba data from backend');
   }

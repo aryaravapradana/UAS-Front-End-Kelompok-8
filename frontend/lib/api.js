@@ -75,6 +75,11 @@ export const API = {
   events: {
     team: (type, id) => buildApiUrl(`/api/events/${type}/${id}/team`),
   },
+
+  // Members
+  members: {
+    list: () => buildApiUrl('/api/member'),
+  },
 };
 
 // Export API_URL for direct use if needed

@@ -3,9 +3,10 @@
 import { useEffect, useState } from 'react';
 import Header from '../../../components/Header';
 import { useTransition } from '../../../context/TransitionContext';
+import API from '@/lib/api';
 
 async function getBootcamp(id) {
-  const res = await fetch(`http://127.0.0.1:3001/api/bootcamps/${id}`, { cache: 'no-store' });
+  const res = await fetch(API.bootcamps.detail(id), { cache: 'no-store' });
   if (!res.ok) {
     throw new Error('Failed to fetch data from backend');
   }
