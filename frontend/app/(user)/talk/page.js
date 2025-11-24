@@ -7,9 +7,10 @@ import Link from 'next/link';
 import Image from 'next/image';
 import styles from './talk.module.css';
 import FadeInOnScroll from '../components/FadeInOnScroll';
+import API from '@/lib/api';
 
 async function getTalk() {
-  const res = await fetch('http://127.0.0.1:3001/api/talks', { cache: 'no-store' });
+  const res = await fetch(API.talks.list(), { cache: 'no-store' });
   if (!res.ok) {
     throw new Error('Failed to fetch data from backend');
   }
