@@ -64,6 +64,14 @@ export default function TalkPage() {
 function TalksHeroSection() {
   return (
     <section className={styles.talksHeroSection}>
+      <Image
+        src="/decorative-ellipse-blue.svg"
+        alt="Decorative Ellipse Right"
+        width={894}
+        height={824}
+        className={styles.decorativeEllipseRight}
+        unoptimized
+      />
       <div className="container">
         <div className="row align-items-center min-vh-100">
           <div className="col-lg-6">
@@ -112,7 +120,7 @@ function TalksAboutSection() {
             <div className={styles.talksAboutImagesContainer}>
               <div className={styles.talksMainImageFrame}>
                 <Image 
-                  src="/glory.png" 
+                  src="/dokumtalks.JPG" 
                   alt="Speaker presenting at UCCD Talks"
                   width={760}
                   height={760}
@@ -156,6 +164,22 @@ function TalksAboutSection() {
 function TalksWhyJoinSection() {
   return (
     <section className={styles.talksWhyJoinSection}>
+      <Image
+        src="/decorative-ellipse-blue.svg"
+        alt="Decorative Ellipse Left"
+        width={894}
+        height={824}
+        className={styles.decorativeEllipseWhyLeft}
+        unoptimized
+      />
+      <Image
+        src="/decorative-ellipse-blue.svg"
+        alt="Decorative Ellipse Right"
+        width={894}
+        height={824}
+        className={styles.decorativeEllipseWhyRight}
+        unoptimized
+      />
       <div className="container">
         <div className="text-center">
           <h2 className={styles.talksWhyTitle}>Here's Why You Should Join</h2>
