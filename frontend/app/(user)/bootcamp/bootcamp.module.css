@@ -1,7 +1,7 @@
 /* ==================== GLOBAL STYLES ==================== */
 .bootcampPage {
   min-height: 100vh;
-  background: linear-gradient(180deg, #000000 0%, #8316ae 100%);
+  background: #000000;
   color: #ffffff;
   overflow-x: hidden;
 }
@@ -1738,10 +1738,42 @@
 .decorativeEllipseRight {
   position: absolute;
   right: -500px;
-  top: 700px;
+  top: 1000px;
   z-index: 1;
   transform: scaleY(1);
   filter: blur(30px); /* Adjust blur intensity here */
+}
+
+.decorativeEllipseTrack {
+  position: absolute;
+  left: -500px;
+  top: 190px;
+  left: -600px;
+  z-index: 1;
+  transform: scaleX(-1) scaleY(1);/* Flip vertically to make it look like / */
+  filter: blur(30px);
+}
+
+.trackGearLeft {
+  position: absolute;
+  left: -100px;
+  top: 100px;
+  width: 300px;
+  height: auto;
+  z-index: 15;
+  transform: scaleX(1);
+  object-fit: contain;
+}
+
+.trackGearRight {
+  position: absolute;
+  right: -100px;
+  top: 100px;
+  width: 300px;
+  height: auto;
+  z-index: 15;
+  transform: scaleX(-1);
+  object-fit: contain;
 }
 .heroGearSingle {
   position: absolute;
@@ -1755,7 +1787,7 @@
   height: auto;
   
   /* Mirroring and Rotation */
-  transform: scaleX(-1); /* Change to -1 to mirror horizontally */
+  transform: scaleX(-1); 
   /* transform: rotate(45deg); */ /* Uncomment to rotate */
   
   object-fit: contain;

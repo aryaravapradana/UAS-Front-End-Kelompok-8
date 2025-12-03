@@ -1,18 +1,22 @@
 'use client';
 
 import React, { useState, useEffect, useRef } from 'react';
+import { usePathname } from 'next/navigation';
 import TransitionLink from './TransitionLink';
 import Image from 'next/image';
 import styles from './Header.module.css';
 import LoginButton from './LoginButton';
 import ProfileButton from './ProfileButton';
-import NotificationDropdown from './NotificationDropdown'; // Import the new component
+import NotificationDropdown from './NotificationDropdown';
 import { useAuth } from '../context/AuthContext';
 
 const Header = () => {
   const { isLoggedIn, loading } = useAuth();
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const dropdownRef = useRef(null);
+  const [isVisible, setIsVisible] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
+  const pathname = usePathname();
 
   useEffect(() => {
     function handleClickOutside(event) {
@@ -26,12 +30,38 @@ const Header = () => {
     };
   }, [dropdownRef]);
 
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      
+      if (currentScrollY > lastScrollY && currentScrollY > 100) {
+        // Scrolling down and passed threshold
+        setIsVisible(false);
+      } else {
+        // Scrolling up
+        setIsVisible(true);
+      }
+      
+      setLastScrollY(currentScrollY);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [lastScrollY]);
+
   const toggleDropdown = () => {
     setIsDropdownOpen((prev) => !prev);
   };
 
+  const getLinkClass = (path, activeClass) => {
+    const isActive = pathname === path;
+    return `${styles.navLink} ${isActive ? `${styles.activePill} ${styles[activeClass]}` : ''}`;
+  };
+
   return (
-    <header className={styles.navbar}>
+    <header className={`${styles.navbar} ${!isVisible ? styles.hidden : ''}`}>
       <div className="container d-flex align-items-center justify-content-between">
         {/* Left Side: Logo */}
         <div className="d-flex align-items-center" style={{ width: '200px' }}>
@@ -51,12 +81,12 @@ const Header = () => {
 
         {/* Center: Navigation Links */}
         <nav className="d-none d-lg-flex align-items-center gap-4 justify-content-center flex-grow-1">
-          <TransitionLink href="/" className={styles.navLink}>Home</TransitionLink>
-          <TransitionLink href="/bootcamp" className={styles.navLink}>Bootcamp</TransitionLink>
-          <TransitionLink href="/info" className={styles.navLink}>Info</TransitionLink>
-          <TransitionLink href="/talk" className={styles.navLink}>Talks</TransitionLink>
-          <TransitionLink href="/glory" className={styles.navLink}>Glory</TransitionLink>
-          <TransitionLink href="/dashboard" className={styles.navLink}>Dashboard</TransitionLink>
+          <TransitionLink href="/" className={getLinkClass('/', 'activeHome')}>Home</TransitionLink>
+          <TransitionLink href="/bootcamp" className={getLinkClass('/bootcamp', 'activeBootcamp')}>Bootcamp</TransitionLink>
+          <TransitionLink href="/info" className={getLinkClass('/info', 'activeInfo')}>Info</TransitionLink>
+          <TransitionLink href="/talk" className={getLinkClass('/talk', 'activeTalk')}>Talks</TransitionLink>
+          <TransitionLink href="/glory" className={getLinkClass('/glory', 'activeGlory')}>Glory</TransitionLink>
+          <TransitionLink href="/dashboard" className={getLinkClass('/dashboard', 'activeDashboard')}>Dashboard</TransitionLink>
         </nav>
 
         {/* Right Side: Action Buttons */}

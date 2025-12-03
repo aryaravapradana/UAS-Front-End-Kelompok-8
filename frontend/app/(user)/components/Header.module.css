@@ -8,6 +8,11 @@
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   padding: 1rem 0;
+  transition: transform 0.3s ease-in-out;
+}
+
+.hidden {
+  transform: translateY(-100%);
 }
 
 .logoContainer {
@@ -84,18 +89,40 @@
   width: 100%;
 }
 
-.navLink.active {
+/* Active Pill Styles */
+.navLink.activePill {
   color: #ffffff;
-  cursor: default;
-  pointer-events: none;
+  padding: 0.5rem 1.2rem;
+  border-radius: 20px;
+  font-weight: 600 !important;
 }
 
-.navLink.active::after {
-  width: 100%;
+.navLink.activePill::after {
+  display: none;
 }
 
-.navLink.active:hover {
-  color: #ffffff;
+.activeHome {
+  background-color: #333333;
+}
+
+.activeBootcamp {
+  background-color: #4c1d95; /* Dark Purple */
+}
+
+.activeInfo {
+  background-color: #854d0e; /* Dark Gold/Brown */
+}
+
+.activeTalk {
+  background-color: #075985; /* Dark Blue */
+}
+
+.activeGlory {
+  background-color: #991b1b; /* Dark Red */
+}
+
+.activeDashboard {
+  background-color: #333333;
 }
 
 .notificationWrapper {

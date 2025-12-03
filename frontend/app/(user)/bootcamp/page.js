@@ -222,6 +222,30 @@ function ChooseTrackSection({ activeTrack, setActiveTrack, openDetailModal }) {
 
   return (
     <section className={styles.chooseTrackSection}>
+      <Image
+        src="/decorative-ellipse.svg"
+        alt="Decorative Ellipse Track"
+        width={894}
+        height={824}
+        className={styles.decorativeEllipseTrack}
+        unoptimized
+      />
+      <Image
+        src="/gearsingle.png"
+        alt="Track Gear Left"
+        width={400}
+        height={400}
+        className={styles.trackGearLeft}
+        unoptimized
+      />
+      <Image
+        src="/gearsingle.png"
+        alt="Track Gear Right"
+        width={400}
+        height={400}
+        className={styles.trackGearRight}
+        unoptimized
+      />
       <div className="container text-center">
         <div className={styles.titleWrapper} style={{ '--line-left-offset': '-140px', '--line-left-length': '140px', '--line-right-offset': '-140px', '--line-right-length': '140px' }}>
           <span className={`${styles.dot} ${styles.dotLeft}`}></span>
@@ -363,7 +387,7 @@ function WhyJoinSection() {
               </h2>
               <div className={styles.whyJoinImage}>
                 <Image 
-                  src="/bootcamp/bootcamp.png" 
+                  src="/bootcamp/grad.jpg" 
                   alt="Students Celebrating" 
                   width={400}
                   height={300}
