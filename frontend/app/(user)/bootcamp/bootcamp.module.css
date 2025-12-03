@@ -152,9 +152,9 @@
   margin: 0;
   background: transparent;
   background-size: cover;
-  background-position: center center;
   background-repeat: no-repeat;
-  overflow: hidden;
+  z-index: 2;
+  overflow: visible !important;
 }
 
 .heroBackground {
@@ -401,6 +401,8 @@
   display: flex;
   justify-content: flex-end;
   position: relative;
+  z-index: 9999;
+  isolation: isolate;
 }
 
 .bootcampImg {
@@ -414,6 +416,8 @@
     24.94px 105.63px 16.72px 0px rgba(255, 255, 255, 0.25) inset,
     0px 4.13px 4.13px 0px rgba(214, 247, 254, 0.33) inset;
   border: 1px solid rgba(255, 255, 255, 0.1);
+  position: relative;
+  z-index: 9999;
 }
 
 /* ==================== CHOOSE TRACK SECTION ==================== */
@@ -1725,7 +1729,7 @@
 .decorativeEllipse {
   position: absolute;
   left: -600px;
-  top: -200px;
+  top: 80px;
   z-index: 1;
   transform: scaleX(-1) scaleY(-1);
   filter: blur(30px); /* Adjust blur intensity here */
@@ -1733,11 +1737,47 @@
 
 .decorativeEllipseRight {
   position: absolute;
-  right: -600px;
-  top: -200px;
+  right: -500px;
+  top: 700px;
   z-index: 1;
-  transform: scaleY(-1);
+  transform: scaleY(1);
   filter: blur(30px); /* Adjust blur intensity here */
+}
+.heroGearSingle {
+  position: absolute;
+  
+  /* Positioning */
+  top: 100px; /* Adjust vertical position */
+  left: -160px; /* Adjust horizontal position */
+  
+  /* Size */
+  width: 400px; /* Adjust width (height scales automatically) */
+  height: auto;
+  
+  /* Mirroring and Rotation */
+  transform: scaleX(-1); /* Change to -1 to mirror horizontally */
+  /* transform: rotate(45deg); */ /* Uncomment to rotate */
+  
+  object-fit: contain;
+  z-index: 15; /* Ensure it stays above other elements */
+}
+
+.heroGearBottomRight {
+  position: absolute;
+  
+  /* Positioning */
+  bottom: -50px; /* Adjust vertical position */
+  right: -220px; /* Adjust horizontal position */
+  
+  /* Size */
+  width: 500px; /* Adjust width */
+  height: auto;
+  
+  /* Mirroring and Rotation */
+  transform: scaleX(1); /* Default orientation */
+  
+  object-fit: contain;
+  z-index: 15;
 }
 
 /* ==================== SKELETON LOADING ==================== */

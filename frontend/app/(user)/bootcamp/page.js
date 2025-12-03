@@ -36,12 +36,32 @@ export default function BootcampPage() {
   return (
     <div className={styles.bootcampPage}>
       <Header />
-      <FadeInOnScroll>
+      <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100vh', pointerEvents: 'none', zIndex: 15, overflow: 'visible' }}>
+        <Image
+          src="/gearsingle.png"
+          alt="Bootcamp Gears"
+          width={500}
+          height={500}
+          className={styles.heroGearSingle}
+          unoptimized
+        />
+        <Image
+          src="/gearsingle.png"
+          alt="Bootcamp Gears Bottom Right"
+          width={500}
+          height={500}
+          className={styles.heroGearBottomRight}
+          unoptimized
+        />
+      </div>
+      <div style={{ position: 'relative', zIndex: 20, overflow: 'visible' }}>
         <HeroSection />
-      </FadeInOnScroll>
-      <FadeInOnScroll>
-        <WhatIsSection />
-      </FadeInOnScroll>
+      </div>
+      <div style={{ position: 'relative', zIndex: 30 }}>
+        <FadeInOnScroll>
+          <WhatIsSection />
+        </FadeInOnScroll>
+      </div>
       <FadeInOnScroll>
         <ChooseTrackSection activeTrack={activeTrack} setActiveTrack={setActiveTrack} openDetailModal={openDetailModal} />
       </FadeInOnScroll>
@@ -82,17 +102,19 @@ function HeroSection() {
         className={styles.decorativeEllipseRight}
         unoptimized
       />
-      <div className={styles.heroContent}>
-        <div className={styles.heroText}>
-          <h1>
-            A Learning Experience That<br />
-            Transforms Potential into Skill
-          </h1>
-          <p>
-            An intensive learning program designed by UCCD to help FTI students gain real-world experience in UI Design, Web Development, and Data Science guided by mentors and industry experts.
-          </p>
+      <FadeInOnScroll>
+        <div className={styles.heroContent}>
+          <div className={styles.heroText}>
+            <h1>
+              A Learning Experience That<br />
+              Transforms Potential into Skill
+            </h1>
+            <p>
+              An intensive learning program designed by UCCD to help FTI students gain real-world experience in UI Design, Web Development, and Data Science guided by mentors and industry experts.
+            </p>
+          </div>
         </div>
-      </div>
+      </FadeInOnScroll>
     </section>
   );
 }
@@ -110,7 +132,7 @@ function WhatIsSection() {
           </div>
           <div className={styles.whatIsImage}>
             <Image
-              src="/bootcamp/get_to_know_more.png"
+              src="/bootcamp/bootcampdokum.jpg"
               alt="Bootcamp Event"
               width={550}
               height={400}
