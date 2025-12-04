@@ -68,7 +68,7 @@ function WhatIsSection() {
           </div>
           <div className={styles.whatIsImage}>
             <Image
-              src="/glory/hall.png"
+              src="/glory/trophyphoto1.png"
               alt="Glory Hall of Achievement"
               width={550}
               height={400}
@@ -91,16 +91,16 @@ function HallOfAchievementSection() {
       image: "/glory/winner1.png"
     },
     {
-      title: "The First Winner of UI/UX Design Challenge",
-      subtitle: "Coding from passion, achieving with purpose",
-      members: ["Dr. Anthonius S. Hutabarat, SE., MM.", "Dr. Anthonius S. Hutabarat, SE., MM.", "Dr. Anthonius S. Hutabarat, SE., MM."],
-      image: "/glory/champion1.png"
+      title: "Recursion 2025",
+      subtitle: "Juara 2",
+      members: ["Nathan Filza Ardika", "Angel Fransisca Wijaya", "Samuel Supardjo"],
+      image: "/glory/winner2.png"
     },
     {
-      title: "The First Winner of UI/UX Design Challenge",
-      subtitle: "Coding from passion, achieving with purpose",
-      members: ["Dr. Anthonius S. Hutabarat, SE., MM.", "Dr. Anthonius S. Hutabarat, SE., MM.", "Dr. Anthonius S. Hutabarat, SE., MM."],
-      image: "/glory/champion1.png"
+      title: "IT Fest 2024",
+      subtitle: "Juara 2",
+      members: ["Celvin", "Melisa Olivia", "Michelle"],
+      image: "/glory/winner3.png"
     }
   ];
 
