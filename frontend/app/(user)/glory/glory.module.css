@@ -1,5 +1,5 @@
 /* ==================== GLOBAL STYLES ==================== */
-.bootcampPage {
+.gloryPage {
   min-height: 100vh;
   background: #000000;
   color: #ffffff;
@@ -140,7 +140,6 @@
   transform: rotate(-45deg) translate(8px, -8px);
 }
 
-/* ==================== HERO SECTION ==================== */
 .heroSection {
   position: relative;
   width: 100%;
@@ -151,7 +150,6 @@
   padding: 0;
   margin: 0;
   background-color: #000000;
-  background-image: url('/bootcamp/hero_section.png');
   background-size: 100% 100%;
   background-position: center center;
   background-repeat: no-repeat;
@@ -307,7 +305,6 @@
   padding: 6rem 0;
   margin: 0;
   background-color: #000000;
-  background-image: url('/bootcamp/About.png');
   background-size: 100% 100%;
   background-position: center center;
   background-repeat: no-repeat;
@@ -390,7 +387,6 @@
   padding: 6rem 0 3rem;
   margin: 0;
   background-color: #000000;
-  background-image: url('/bootcamp/choose.png');
   background-size: 100% 100%;
   background-position: center center;
   background-repeat: no-repeat;
@@ -672,7 +668,6 @@
   padding: 6rem 0;
   margin: 0;
   background-color: #000000;
-  background-image: url('/bootcamp/why_you_should_join.png');
   background-size: 100% 100%;
   background-position: center center;
   background-repeat: no-repeat;
@@ -851,7 +846,6 @@
   padding: 2.8rem 0 1.4rem;
   margin: 0;
   background-color: #000000;
-  background-image: url('/bootcamp/footer.png');
   background-size: 100% 100%;
   background-position: center center;
   background-repeat: no-repeat;
@@ -1471,7 +1465,6 @@
   padding: 6rem 0;
   margin: 0;
   background-color: #000000;
-  background-image: url('/glory/hall.png');
   background-size: 100% 100%;
   background-position: center center;
   background-repeat: no-repeat;
@@ -1589,7 +1582,6 @@
    GLORY FEATURES SECTION (Get To Know More)
    ======================================== */
 .gloryKnowMoreSection {
-  background-image: url('/glory/get_to_know_more.png');
   background-size: 100% 100%;
   background-position: center center;
   background-repeat: no-repeat;
