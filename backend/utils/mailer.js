@@ -12,6 +12,12 @@ const transporter = nodemailer.createTransport({
   logger: true, // log information in console
 });
 
+console.log('Mailer Configured with:', {
+  host: process.env.EMAIL_HOST,
+  port: process.env.EMAIL_PORT,
+  user: process.env.EMAIL_USER ? process.env.EMAIL_USER.replace(/(.{3})(.*)(@.*)/, '$1***$3') : 'NOT SET',
+});
+
 const sendVerificationEmail = async (to, token) => {
   // Check if the email service is configured.
   if (process.env.EMAIL_USER === 'user@example.com') {
