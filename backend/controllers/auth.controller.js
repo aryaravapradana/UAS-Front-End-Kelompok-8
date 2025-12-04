@@ -156,7 +156,7 @@ exports.resendVerificationEmail = async (req, res) => {
 exports.forgotPassword = async (req, res) => {
   const { email } = req.body;
   try {
-    const member = await prisma.member.findUnique({ where: { email } });
+    const member = await prisma.member.findFirst({ where: { email } });
 
     if (!member) {
       // Don't reveal that the user doesn't exist.
