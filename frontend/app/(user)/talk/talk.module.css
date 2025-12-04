@@ -6,6 +6,14 @@
   overflow-x: hidden;
 }
 
+.container {
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 0 2.5rem;
+  position: relative;
+  z-index: 10;
+}
+
 /* ==================== TALKS HERO SECTION ==================== */
 .talksHeroSection {
   position: relative;
@@ -358,12 +366,12 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 100vw;
+  width: 100%;
   max-width: none;
 }
 
 .talksWhyImage {
-  width: 100vw;
+  width: 100%;
   height: auto;
   max-width: none;
 }
@@ -1017,6 +1025,23 @@
   .talksCollabTitle {
     font-size: 46px;
   }
+
+  /* Hide decorative elements */
+  .decorativeEllipseRight,
+  .decorativeEllipseWhyLeft,
+  .decorativeEllipseWhyRight,
+  .titleWrapper::before,
+  .titleWrapper::after,
+  .dot,
+  .dotLeft,
+  .dotRight {
+    display: none !important;
+  }
+
+  /* Change background to black */
+  .talksPage {
+    background: #000000;
+  }
   
   .talksHeroDescription,
   .talksWhySubtitle {
@@ -1090,6 +1115,10 @@
 }
 
 @media (max-width: 768px) {
+  .container {
+    padding: 0 2rem;
+  }
+
   .talksHeroSection {
     background-size: cover;
     background-position: center;
@@ -1299,8 +1328,28 @@
     display: none;
   }
   
-  .dot {
-    display: none;
+
+
+  /* Footer Responsive */
+  .footerContent {
+    flex-direction: column;
+    gap: 3rem;
+  }
+
+  .footerLeft,
+  .footerMiddle,
+  .footerRight {
+    flex: 0 0 100%;
+    max-width: 100%;
+    text-align: center;
+  }
+
+  .footerLogoWrapper {
+    justify-content: center;
+  }
+
+  .footerLogoText {
+    text-align: left;
   }
 }
 
@@ -1362,7 +1411,7 @@
 /* ==================== DECORATIVE ELLIPSE ==================== */
 .decorativeEllipseRight {
   position: absolute;
-  right: -300px;
+  right: -500px;
   top: 100px;
   z-index: 1;
   transform: scaleY(1);

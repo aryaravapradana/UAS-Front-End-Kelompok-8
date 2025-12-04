@@ -71,8 +71,8 @@ function HomeContent() {
 
       <section className={styles.uccdSection}>
         <div className="container">
-          <div className="row align-items-center">
-            <div className={`col-lg-6 col-md-12 ${styles.textBlock}`}>
+          <div className="row align-items-center justify-content-center">
+            <div className={`col-12 text-center ${styles.textBlock}`}>
               <FadeInOnScroll>
                 <h2 className={styles.sectionTitle}>
                   Untar Computer<br />Club Development
@@ -85,7 +85,7 @@ function HomeContent() {
               </FadeInOnScroll>
             </div>
 
-            <div className={`col-lg-6 col-md-12 text-center ${styles.logoBlock}`}>
+            <div className={`col-12 text-center ${styles.logoBlock}`}>
               <FadeInOnScroll>
                 <div className={styles.logoTilt}>
                   <Image src="/pc-homepage.png" alt="UCCD Logo" width={520} height={520} className={styles.uccdLogo} style={{ objectFit: "contain" }} />

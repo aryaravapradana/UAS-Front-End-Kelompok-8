@@ -5,6 +5,7 @@ import Header from '../components/Header';
 import { useTransition } from '../context/TransitionContext';
 import FadeInOnScroll from '../components/FadeInOnScroll';
 import API from '@/lib/api';
+import styles from './lomba.module.css';
 
 async function getLomba() {
   const res = await fetch(API.lombas.list(), { cache: 'no-store' });
@@ -36,15 +37,15 @@ export default function LombaPage() {
   }, [endTransition]);
 
   return (
-    <div>
+    <div className={styles.lombaPage}>
       <Header />
-      <main className="container py-5" style={{ marginTop: '80px' }}>
+      <main className={`container ${styles.mainContainer}`}>
         <FadeInOnScroll>
-          <h1 className="text-center mb-4">Daftar Lomba</h1>
+          <h1 className={styles.title}>Daftar Lomba</h1>
         </FadeInOnScroll>
         <FadeInOnScroll>
-          <div className="table-responsive">
-            <table className="table table-striped table-bordered">
+          <div className={`table-responsive ${styles.tableContainer}`}>
+            <table className="table table-striped table-bordered mb-0">
               <thead className="thead-dark">
                 <tr>
                   <th>Nama Lomba</th>

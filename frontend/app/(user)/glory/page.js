@@ -29,9 +29,6 @@ export default function GloryPage() {
         <HallOfAchievementSection />
       </FadeInOnScroll>
       <FadeInOnScroll>
-        <NewBlackSection />
-      </FadeInOnScroll>
-      <FadeInOnScroll>
         <GloryKnowMoreSection />
       </FadeInOnScroll>
       <AppFooter />
@@ -86,29 +83,26 @@ function WhatIsSection() {
 }
 
 function HallOfAchievementSection() {
-  const [achievements, setAchievements] = useState([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const fetchAchievements = async () => {
-      try {
-        const res = await fetch(API.lombas.list());
-        if (!res.ok) {
-          throw new Error('Failed to fetch achievements');
-        }
-        const data = await res.json();
-        // Filter for competitions that have a winner
-        const winningLombas = data.filter(lomba => lomba.pemenang);
-        setAchievements(winningLombas);
-      } catch (error) {
-        console.error("Error fetching achievements:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchAchievements();
-  }, []);
+  const winners = [
+    {
+      title: "I/O Festival 2025",
+      subtitle: "Juara Harapan 2",
+      members: ["Nathan Ginta Thiores", "Michael Chan", "Hengky Laurencio"],
+      image: "/glory/winner1.png"
+    },
+    {
+      title: "The First Winner of UI/UX Design Challenge",
+      subtitle: "Coding from passion, achieving with purpose",
+      members: ["Dr. Anthonius S. Hutabarat, SE., MM.", "Dr. Anthonius S. Hutabarat, SE., MM.", "Dr. Anthonius S. Hutabarat, SE., MM."],
+      image: "/glory/champion1.png"
+    },
+    {
+      title: "The First Winner of UI/UX Design Challenge",
+      subtitle: "Coding from passion, achieving with purpose",
+      members: ["Dr. Anthonius S. Hutabarat, SE., MM.", "Dr. Anthonius S. Hutabarat, SE., MM.", "Dr. Anthonius S. Hutabarat, SE., MM."],
+      image: "/glory/champion1.png"
+    }
+  ];
 
   return (
     <section className={styles.hallOfAchievementSection}>
@@ -120,56 +114,31 @@ function HallOfAchievementSection() {
         </div>
         <p className={styles.sectionSubtitle}>Celebrating the champions who have demonstrated exceptional skill and dedication.</p>
 
-        <div className={styles.achievementGrid}>
-          {loading ? (
-            <p>Loading achievements...</p>
-          ) : achievements.length > 0 ? (
-            achievements.map((lomba) => (
-              <div key={lomba.id} className={styles.achievementCard}>
-                <div className={styles.achievementImageWrapper}>
-                  <Image
-                    src={lomba.posterUrl || '/glory/champion1.png'}
-                    alt={lomba.nama_lomba}
-                    fill
-                    className={styles.achievementImg}
-                    style={{ objectFit: 'cover' }}
-                  />
-                   <div className={styles.championOverlay}>
-                      <span className={styles.championBadge}>CHAMPION</span>
-                    </div>
-                </div>
-                <div className={styles.achievementInfo}>
-                  <h3 className={styles.achievementTitle}>{lomba.nama_lomba}</h3>
-                  <div className={styles.winnerInfo}>
-                    <Image 
-                      src={lomba.pemenang.profilePictureUrl || '/default-profile.png'} 
-                      alt={lomba.pemenang.nama_lengkap}
-                      width={32}
-                      height={32}
-                      className={styles.winnerAvatar}
-                    />
-                    <div className={styles.winnerText}>
-                      <span className={styles.winnerName}>{lomba.pemenang.nama_lengkap}</span>
-                      <span className={styles.winnerNim}>{lomba.pemenang.nim}</span>
-                    </div>
-                  </div>
-                </div>
+        <div className={styles.container}>
+          {winners.map((winner, index) => (
+            <div key={index} className={styles.winnerCard}>
+              <div className={styles.winnerCardContent}>
+                <h3 className={styles.winnerTitle}>{winner.title}</h3>
+                <p className={styles.winnerSubtitle}>{winner.subtitle}</p>
+                <ul className={styles.winnerList}>
+                  {winner.members.map((member, idx) => (
+                    <li key={idx}><i className="fas fa-user"></i> {member}</li>
+                  ))}
+                </ul>
               </div>
-            ))
-          ) : (
-            <p>No champions to display at the moment.</p>
-          )}
+              <div className={styles.winnerCardImageWrapper}>
+                <Image
+                  src={winner.image}
+                  alt={winner.title}
+                  width={1575}
+                  height={1825}
+                  className={styles.winnerCardImage}
+                  style={{ objectFit: 'cover' }}
+                />
+              </div>
+            </div>
+          ))}
         </div>
-      </div>
-    </section>
-  );
-}
-
-function NewBlackSection() {
-  return (
-    <section className={styles.newBlackSection}>
-      <div className="container">
-        {/* This is the new black section. Content can be added here later. */}
       </div>
     </section>
   );
@@ -221,7 +190,7 @@ function GloryKnowMoreSection() {
 function AppFooter() {
   return (
     <footer className={styles.infoFooter}>
-      <div className="container">
+      <div className={styles.container}>
         <div className={styles.infoFooterContent}>
           <div className={styles.infoFooterLeft}>
             <div className={styles.infoFooterLogoWrapper}>

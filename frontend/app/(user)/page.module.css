@@ -263,7 +263,7 @@
 }
 
 /* ========================================
-   UCCD SECTION - WITH GRADIENT BLUR
+   UCCD SECTION - AMOLED BLACK
    ======================================== */
 .uccdSection {
   position: relative;
@@ -274,28 +274,18 @@
   padding: 6rem 0;
   color: #fff;
   overflow: hidden;
+  text-align: center;
 }
 
-.uccdSection::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: radial-gradient(ellipse 80% 60% at 50% 50%, rgba(100, 100, 100, 0.3) 0%, transparent 70%);
-  filter: blur(80px);
-  z-index: 0;
-}
+/* Removed ::before gradient blur */
 
 .textBlock {
-  padding-left: 2rem;
   position: relative;
   z-index: 1;
+  margin-bottom: 3rem; /* Add spacing between text and logo */
 }
 
 .logoBlock {
-  margin-left: -3rem;
   position: relative;
   z-index: 1;
 }
@@ -304,7 +294,7 @@
   font-weight: 700;
   font-size: 2.5rem;
   line-height: 1.2;
-  color: #f2f2f2;
+  color: #fff; /* Pure white */
   margin-bottom: 1.5rem;
   letter-spacing: -0.02em;
 }
@@ -312,22 +302,23 @@
 .sectionText {
   font-size: 0.95rem;
   line-height: 1.9;
-  color: rgba(255, 255, 255, 0.9);
-  max-width: 90%;
+  color: #fff; /* Pure white */
+  max-width: 800px; /* Limit width for readability */
   letter-spacing: 0.015em;
+  margin: 0 auto;
 }
 
 .uccdLogo {
   width: 100%;
   height: auto;
-  max-width: 560px;
+  max-width: 400px; /* Slightly smaller for centered layout */
   transition: transform 0.6s ease, filter 0.6s ease;
 }
 
 .logoTilt {
-  transform: rotate(-5deg);
+  transform: none; /* Remove tilt for cleaner look */
   display: inline-block;
-  margin-top: -6rem;
+  margin-top: 0;
 }
 
 .logoTilt:hover .uccdLogo {
@@ -336,22 +327,17 @@
 
 @media (max-width: 992px) {
   .uccdSection {
-    text-align: center;
     padding: 4rem 0;
   }
-  .textBlock { padding-left: 0; }
-  .logoBlock { margin-left: 0; }
   .sectionTitle { font-size: 2.1rem; }
-  .sectionText { margin: 0 auto; max-width: 100%; }
-  .logoTilt { transform: none; margin-top: 0; }
-  .uccdLogo { max-width: 300px; }
+  .sectionText { max-width: 100%; }
 }
 
 /* ========================================
-   FEATURES SECTION - GRADIENT BACKGROUND
+   FEATURES SECTION - AMOLED BLACK
    ======================================== */
 .featuresSection {
-  background: linear-gradient(180deg, #000000 0%, #0f0f0f 12%, #1e1e1e 22%, #2e2e2e 32%, #404040 45%, #525252 58%, #6b6b6b 72%, #888888 88%, #a0a0a0 100%);
+  background: #000; /* Amoled Black */
   padding: 8rem 0;
   position: relative;
   overflow: visible;
@@ -526,16 +512,6 @@
   text-align: center;
 }
 
-/* RESPONSIVE */
-@media (max-width: 768px) {
-  .featureCard {
-    padding: 2rem 1.2rem;
-  }
-  .featuresTitle {
-    font-size: 2rem;
-  }
-}
-
 /* ========================================
    FOOTER
    ======================================== */
@@ -676,8 +652,10 @@
 @media (max-width: 992px) {
   .heroTitle { font-size: 2.25rem; }
   .heroSubtext { font-size: 0.9rem; }
-  .sectionTitle { font-size: 2rem; }
+  .sectionTitle { font-size: 2.1rem; }
   .featuresTitle { font-size: 1.9rem; }
+  .btnExplore { padding: 0.85rem 1.9rem; font-size: 0.85rem; }
+  .featureCard { padding: 2.25rem 1.8rem; }
 }
 
 @media (max-width: 768px) {
@@ -687,6 +665,35 @@
   .sectionTitle { font-size: 1.8rem; }
   .sectionText { font-size: 0.9rem; }
   .featuresTitle { font-size: 1.7rem; }
+  
+  /* Stack Footer */
+  .infoFooterContent {
+    flex-direction: column;
+    gap: 2rem;
+  }
+  .infoFooterLeft, .infoFooterMiddle, .infoFooterRight {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+
+  /* Adjust Feature Cards */
+  .featureCard {
+    height: auto;
+    min-height: 300px;
+  }
+
+  /* Hide Title Lines */
+  .titleWrapper::before,
+  .titleWrapper::after,
+  .dotLeft,
+  .dotRight {
+    display: none;
+  }
+  
+  /* Logo Sizing */
+  .uccdLogo {
+    max-width: 80%;
+  }
 }
 
 @media (max-width: 576px) {

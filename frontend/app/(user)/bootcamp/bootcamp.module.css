@@ -1341,12 +1341,21 @@
 
 /* ==================== RESPONSIVE - FOOTER ==================== */
 @media (max-width: 767px) {
-  .footer {
+  .infoFooter {
     background-size: cover;
+    padding: 4rem 0 2rem;
   }
 
-  .footerContent {
+  .infoFooterContent {
     flex-direction: column;
+    gap: 2.5rem;
+  }
+
+  .infoFooterLeft,
+  .infoFooterMiddle,
+  .infoFooterRight {
+    flex: 1 1 100%;
+    max-width: 100%;
   }
 
   .container {
@@ -1360,8 +1369,8 @@
   .whatIsSection,
   .chooseTrackSection,
   .whyJoinSection,
-  .knowMoreSection,
-  .footer {
+  .bootcampFeaturesSection,
+  .infoFooter {
     background-size: 100% 100%;
   }
 }
@@ -1371,8 +1380,8 @@
   .whatIsSection,
   .chooseTrackSection,
   .whyJoinSection,
-  .knowMoreSection,
-  .footer {
+  .bootcampFeaturesSection,
+  .infoFooter {
     background-size: 100% 100%;
   }
 
@@ -1386,8 +1395,8 @@
   .whatIsSection,
   .chooseTrackSection,
   .whyJoinSection,
-  .knowMoreSection,
-  .footer {
+  .bootcampFeaturesSection,
+  .infoFooter {
     background-size: 100% 100%;
   }
 
@@ -1493,6 +1502,30 @@
   position: relative;
   z-index: 3;
   display: inline-block;
+}
+
+@media (max-width: 992px) {
+  .bootcampFeaturesTitle {
+    font-size: 3rem;
+  }
+  
+  .bootcampTitleWrapper::before,
+  .bootcampTitleWrapper::after,
+  .bootcampDotLeft,
+  .bootcampDotRight {
+    display: none;
+  }
+
+  .featureCard {
+    height: auto;
+    min-height: 300px;
+  }
+}
+
+@media (max-width: 768px) {
+  .bootcampFeaturesTitle {
+    font-size: 2.5rem;
+  }
 }
 
 .bootcampFeaturesSubtext {
@@ -1859,4 +1892,72 @@
   color: #ffffff;
   font-size: 1.05rem;
   margin-right: 0.5rem;
+}
+
+/* ==================== RESPONSIVE - TABLET & MOBILE (<992px) ==================== */
+@media (max-width: 992px) {
+  /* Hide all decorative elements to prevent clutter on smaller screens */
+  .heroGearSingle,
+  .heroGearBottomRight,
+  .decorativeEllipse,
+  .decorativeEllipseRight,
+  .decorativeEllipseTrack,
+  .trackGearLeft,
+  .trackGearRight {
+    display: none !important;
+  }
+
+  /* Change background to linear gradient black to purple */
+  .bootcampPage {
+    background: linear-gradient(180deg, #000000 0%, #2e0249 100%) !important;
+    min-height: 100vh;
+  }
+
+  /* Footer Responsive */
+  .infoFooterContent {
+    flex-direction: column;
+    gap: 3rem;
+  }
+
+  .infoFooterLeft,
+  .infoFooterMiddle,
+  .infoFooterRight {
+    flex: 0 0 100%;
+    max-width: 100%;
+    text-align: center;
+  }
+
+  .infoFooterLogoWrapper {
+    justify-content: center;
+  }
+
+  .infoFooterLogoText {
+    text-align: left;
+  }
+}
+
+/* ==================== RESPONSIVE - SMALL MOBILE (<480px) ==================== */
+@media (max-width: 480px) {
+  .trackFilter {
+    width: 100%;
+    gap: 0.5rem;
+    padding: 4px;
+    border-radius: 40px;
+  }
+
+  .trackFilter button {
+    min-width: auto;
+    padding: 0.7rem 1rem;
+    font-size: 0.85rem;
+    flex: 1;
+    border-radius: 35px;
+  }
+  
+  .trackFilter button.active::after {
+    border-radius: 35px;
+  }
+  
+  .trackFilter button.active::before {
+    border-radius: 37px;
+  }
 }
