@@ -15,7 +15,17 @@ const transporter = nodemailer.createTransport({
 console.log('Mailer Configured with:', {
   host: process.env.EMAIL_HOST,
   port: process.env.EMAIL_PORT,
+  secure: process.env.EMAIL_SECURE,
   user: process.env.EMAIL_USER ? process.env.EMAIL_USER.replace(/(.{3})(.*)(@.*)/, '$1***$3') : 'NOT SET',
+});
+
+// Verify connection configuration
+transporter.verify(function (error, success) {
+  if (error) {
+    console.error('❌ SMTP Connection Error:', error);
+  } else {
+    console.log('✅ SMTP Server is ready to take our messages');
+  }
 });
 
 const sendVerificationEmail = async (to, token) => {
@@ -49,10 +59,12 @@ const sendVerificationEmail = async (to, token) => {
   };
 
   try {
-    await transporter.sendMail(mailOptions);
-    console.log('Verification email sent to:', to);
+    const info = await transporter.sendMail(mailOptions);
+    console.log('✅ Verification email sent to:', to);
+    console.log('📧 Message ID:', info.messageId);
+    console.log('📧 Response:', info.response);
   } catch (error) {
-    console.error('Error sending verification email:', error);
+    console.error('❌ Error sending verification email:', error);
     throw new Error('Could not send verification email.');
   }
 };
@@ -89,10 +101,12 @@ const sendPasswordResetEmail = async (to, token) => {
   };
 
   try {
-    await transporter.sendMail(mailOptions);
-    console.log('Password reset email sent to:', to);
+    const info = await transporter.sendMail(mailOptions);
+    console.log('✅ Password reset email sent to:', to);
+    console.log('📧 Message ID:', info.messageId);
+    console.log('📧 Response:', info.response);
   } catch (error) {
-    console.error('Error sending password reset email:', error);
+    console.error('❌ Error sending password reset email:', error);
     throw new Error('Could not send password reset email.');
   }
 };
