@@ -73,6 +73,11 @@ app.use((err, req, res, next) => {
   console.error(`❌ [500] Global error:`, err);
   res.status(500).json({ message: 'Internal Server Error', error: err.message });
 });
+// Start the server
+const server = app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
+});
+
 // Node.js defaults to 5s, which is often shorter than LB timeouts (60s)
 server.keepAliveTimeout = 61000; // 61 seconds
 server.headersTimeout = 65000;   // 65 seconds

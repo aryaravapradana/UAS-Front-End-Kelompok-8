@@ -23,6 +23,7 @@ const getAngkatan = (nim) => {
 };
 
 exports.register = async (req, res) => {
+  console.log('Register request received:', req.body);
   const { nim, password, nama_lengkap } = req.body;
 
   if (!nim || !password || !nama_lengkap) {
@@ -57,6 +58,7 @@ exports.register = async (req, res) => {
 
     res.status(201).json({ message: 'Member registered successfully', member: newMember });
   } catch (error) {
+    console.error('Register error:', error);
     res.status(500).json({ message: 'Something went wrong', error: error.message });
   }
 };
