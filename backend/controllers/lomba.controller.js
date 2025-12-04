@@ -32,7 +32,7 @@ exports.getLombaById = async (req, res) => {
 // @route   POST /api/lombas
 // @access  Private
 exports.createLomba = async (req, res) => {
-  const { nama_lomba, penyelenggara, batasan_tahun, batasan_prodi, tanggal_deadline, biaya_daftar } = req.body;
+  const { nama_lomba, penyelenggara, batasan_tahun, batasan_prodi, tanggal_deadline, biaya_daftar, max_anggota } = req.body;
 
   try {
     const data = {
@@ -42,6 +42,7 @@ exports.createLomba = async (req, res) => {
       batasan_prodi,
       tanggal_deadline: new Date(tanggal_deadline),
       biaya_daftar: parseFloat(biaya_daftar),
+      max_anggota: parseInt(max_anggota) || 1,
     };
 
     if (req.file) {
@@ -59,7 +60,7 @@ exports.createLomba = async (req, res) => {
 // @route   PUT /api/lombas/:id
 // @access  Private
 exports.updateLomba = async (req, res) => {
-  const { nama_lomba, penyelenggara, batasan_tahun, batasan_prodi, tanggal_deadline, biaya_daftar } = req.body;
+  const { nama_lomba, penyelenggara, batasan_tahun, batasan_prodi, tanggal_deadline, biaya_daftar, max_anggota } = req.body;
   const { id } = req.params;
 
   try {
@@ -71,6 +72,7 @@ exports.updateLomba = async (req, res) => {
     if (batasan_prodi) dataToUpdate.batasan_prodi = batasan_prodi;
     if (tanggal_deadline) dataToUpdate.tanggal_deadline = new Date(tanggal_deadline);
     if (biaya_daftar) dataToUpdate.biaya_daftar = parseFloat(biaya_daftar);
+    if (max_anggota) dataToUpdate.max_anggota = parseInt(max_anggota);
 
     if (req.file) {
       dataToUpdate.posterUrl = `${process.env.CLOUDFLARE_WORKER_DOMAIN}${req.file.key}`;

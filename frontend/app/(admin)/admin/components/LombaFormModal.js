@@ -9,6 +9,7 @@ export default function LombaFormModal({ isOpen, onClose, onSubmit, initialData 
     penyelenggara: '',
     tanggal_deadline: '',
     biaya_daftar: '',
+    max_anggota: '',
     // posterUrl will be handled via file input
   });
   const [poster, setPoster] = useState(null);
@@ -20,12 +21,13 @@ export default function LombaFormModal({ isOpen, onClose, onSubmit, initialData 
     if (isOpen) {
       setError('');
       setPoster(null);
-      if (isEditMode && initialData) {
+    if (isEditMode && initialData) {
         setFormData({
           nama_lomba: initialData.nama_lomba || '',
           penyelenggara: initialData.penyelenggara || '',
           tanggal_deadline: initialData.tanggal_deadline ? new Date(initialData.tanggal_deadline).toISOString().split('T')[0] : '',
           biaya_daftar: initialData.biaya_daftar || '0',
+          max_anggota: initialData.max_anggota || '1',
         });
       } else {
         setFormData({
@@ -33,6 +35,7 @@ export default function LombaFormModal({ isOpen, onClose, onSubmit, initialData 
           penyelenggara: '',
           tanggal_deadline: '',
           biaya_daftar: '0',
+          max_anggota: '1',
         });
       }
     }
@@ -65,6 +68,7 @@ export default function LombaFormModal({ isOpen, onClose, onSubmit, initialData 
     submissionData.append('penyelenggara', formData.penyelenggara);
     submissionData.append('tanggal_deadline', formData.tanggal_deadline);
     submissionData.append('biaya_daftar', formData.biaya_daftar);
+    submissionData.append('max_anggota', formData.max_anggota);
     
     if (poster) {
       submissionData.append('poster', poster);
@@ -126,6 +130,19 @@ export default function LombaFormModal({ isOpen, onClose, onSubmit, initialData 
               name="biaya_daftar"
               value={formData.biaya_daftar}
               onChange={handleChange}
+              required
+              className={styles.input}
+            />
+          </div>
+          <div className={styles.inputGroup}>
+            <label htmlFor="max_anggota">Max Anggota (1 for Solo)</label>
+            <input
+              type="number"
+              id="max_anggota"
+              name="max_anggota"
+              value={formData.max_anggota}
+              onChange={handleChange}
+              min="1"
               required
               className={styles.input}
             />
