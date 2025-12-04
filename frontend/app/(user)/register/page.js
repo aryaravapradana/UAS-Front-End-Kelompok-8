@@ -28,7 +28,6 @@ const getAngkatan = (nim) => {
 export default function RegisterPage() {
   const [namaLengkap, setNamaLengkap] = useState('');
   const [nim, setNim] = useState('');
-  const [email, setEmail] = useState('');
   const [prodi, setProdi] = useState('');
   const [angkatan, setAngkatan] = useState('');
   const [password, setPassword] = useState('');
@@ -56,7 +55,7 @@ export default function RegisterPage() {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ nama_lengkap: namaLengkap, nim, email, password }),
+        body: JSON.stringify({ nama_lengkap: namaLengkap, nim, password }),
       });
 
       if (res.ok) {
@@ -112,21 +111,6 @@ export default function RegisterPage() {
                 value={nim}
                 onChange={(e) => setNim(e.target.value)}
                 placeholder="Enter your student id"
-                required
-              />
-            </div>
-          </div>
-
-          <div className={styles.inputGroup}>
-            <label htmlFor="email">Email</label>
-            <div className={styles.inputWrapper}>
-              <i className="fas fa-envelope"></i>
-              <input
-                type="email"
-                id="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="Enter your email"
                 required
               />
             </div>
