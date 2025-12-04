@@ -41,7 +41,7 @@ export default function GloryPage() {
 
 function HeroSection() {
   return (
-    <section className={styles.heroSection} style={{backgroundImage: "url('/glory/hero.png')"}}>
+    <section className={styles.heroSection}>
       <div className={styles.heroContent}>
         <div className={styles.heroText}>
           <h1>
@@ -60,7 +60,7 @@ function HeroSection() {
 
 function WhatIsSection() {
   return (
-    <section className={styles.whatIsSection} style={{backgroundImage: "url('/glory/about.png')"}}>
+    <section className={styles.whatIsSection}>
       <div className={styles.container}>
         <div className={styles.whatIsContent}>
           <div className={styles.whatIsText}>
