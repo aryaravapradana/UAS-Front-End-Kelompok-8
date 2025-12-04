@@ -156,7 +156,7 @@ function InfoAboutSection() {
           <div className="col-lg-10 mt-5">
             <div className={styles.infoAboutImageWrapper}>
               <Image 
-                src="/info/about.png" 
+                src="/info/grad.jpg" 
                 alt="UCCD Info Platform"
                 width={1200}
                 height={600}
@@ -215,7 +215,7 @@ function InfoWhyJoinSection() {
           <div className="col-lg-6">
             <div className={styles.infoWhyImageContainer}>
               <Image 
-                src="/info/why_join_image.png" 
+                src="/info/grad2.jpg" 
                 alt="Students celebrating"
                 width={600}
                 height={600}
