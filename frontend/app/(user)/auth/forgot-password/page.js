@@ -2,8 +2,10 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import styles from './ForgotPassword.module.css';
 import API from '@/lib/api';
+import FadeInOnScroll from '../../components/FadeInOnScroll';
 
 export default function ForgotPasswordPage() {
   const [email, setEmail] = useState('');
@@ -41,39 +43,48 @@ export default function ForgotPasswordPage() {
 
   return (
     <div className={styles.container}>
-      <div className={styles.formWrapper}>
-        <h1 className={styles.title}>Forgot Password</h1>
-        <p className={styles.subtitle}>
-          Enter the email address associated with your account, and we’ll send you a link to reset your password.
-        </p>
-
-        {message && <div className={styles.alertSuccess}>{message}</div>}
-        {error && <div className={styles.alertError}>{error}</div>}
-
-        {!message && (
-          <form onSubmit={handleSubmit}>
-            <div className={styles.inputGroup}>
-              <label htmlFor="email">Email Address</label>
-              <input
-                type="email"
-                id="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                className={styles.input}
-                placeholder="you@example.com"
-                required
-              />
+      <FadeInOnScroll>
+        <div className={styles.formWrapper}>
+          <div className={styles.formHeader}>
+            <div className={styles.formIcon}>
+              <Image src="/uccd-logo@2x.png" alt="UCCD" width={40} height={40} className={styles.formIconImage} />
             </div>
-            <button type="submit" className={styles.button} disabled={isLoading}>
-              {isLoading ? 'Sending...' : 'Send Reset Link'}
-            </button>
-          </form>
-        )}
+            <h1 className={styles.title}>Forgot Password</h1>
+            <p className={styles.subtitle}>
+              Enter your email address and we'll send you a link to reset your password.
+            </p>
+          </div>
 
-        <div className={styles.backToLogin}>
-          <Link href="/login">Back to Sign In</Link>
+          {message && <div className={styles.alertSuccess}>{message}</div>}
+          {error && <div className={styles.alertError}>{error}</div>}
+
+          {!message && (
+            <form onSubmit={handleSubmit}>
+              <div className={styles.inputGroup}>
+                <div className={styles.inputWrapper}>
+                  <i className="fas fa-envelope"></i>
+                  <input
+                    type="email"
+                    id="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    className={styles.input}
+                    placeholder="Enter your email"
+                    required
+                  />
+                </div>
+              </div>
+              <button type="submit" className={styles.button} disabled={isLoading}>
+                {isLoading ? 'Sending...' : 'Send Reset Link'}
+              </button>
+            </form>
+          )}
+
+          <div className={styles.backToLogin}>
+            Remember your password? <Link href="/login">Sign In</Link>
+          </div>
         </div>
-      </div>
+      </FadeInOnScroll>
     </div>
   );
 }
