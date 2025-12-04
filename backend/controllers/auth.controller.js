@@ -24,9 +24,9 @@ const getAngkatan = (nim) => {
 
 exports.register = async (req, res) => {
   console.log('Register request received:', req.body);
-  const { nim, password, nama_lengkap } = req.body;
+  const { nim, password, nama_lengkap, email } = req.body;
 
-  if (!nim || !password || !nama_lengkap) {
+  if (!nim || !password || !nama_lengkap || !email) {
     return res.status(400).json({ message: 'Please provide all required fields.' });
   }
 
@@ -51,6 +51,7 @@ exports.register = async (req, res) => {
         nim,
         password: hashedPassword,
         nama_lengkap,
+        email,
         prodi,
         angkatan,
       },
