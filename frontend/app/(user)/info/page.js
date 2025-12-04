@@ -65,6 +65,24 @@ export default function InfoPage() {
   return (
     <div className={styles.infoPage}>
       <Header />
+      <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100vh', pointerEvents: 'none', zIndex: 1, overflow: 'visible' }}>
+        <Image
+          src="/decorative-ellipse-yellow.svg"
+          alt="Decorative Ellipse"
+          width={894}
+          height={824}
+          className={styles.decorativeEllipse}
+          unoptimized
+        />
+        <Image
+          src="/decorative-ellipse-yellow.svg"
+          alt="Decorative Ellipse Right"
+          width={894}
+          height={824}
+          className={styles.decorativeEllipseRight}
+          unoptimized
+        />
+      </div>
       <FadeInOnScroll>
         <InfoHeroSection />
       </FadeInOnScroll>
@@ -99,23 +117,7 @@ export default function InfoPage() {
 function InfoHeroSection() {
   return (
     <section className={styles.infoHeroSection}>
-      <Image
-        src="/decorative-ellipse-yellow.svg"
-        alt="Decorative Ellipse"
-        width={894}
-        height={824}
-        className={styles.decorativeEllipse}
-        unoptimized
-      />
-      <Image
-        src="/decorative-ellipse-yellow.svg"
-        alt="Decorative Ellipse Right"
-        width={894}
-        height={824}
-        className={styles.decorativeEllipseRight}
-        unoptimized
-      />
-      <div className="container" style={{ position: 'relative', zIndex: 3 }}>
+      <div className={styles.container} style={{ position: 'relative', zIndex: 3 }}>
         <div className="row align-items-center min-vh-100">
           <div className="col-lg-12">
             <div className={styles.infoHeroContent}>
@@ -141,7 +143,7 @@ function InfoHeroSection() {
 function InfoAboutSection() {
   return (
     <section className={styles.infoAboutSection}>
-      <div className="container">
+      <div className={styles.container}>
         <div className="row justify-content-center">
           <div className="col-lg-12 text-center">
             <h2 className={styles.infoAboutTitle}>
@@ -158,7 +160,7 @@ function InfoAboutSection() {
                 alt="UCCD Info Platform"
                 width={1200}
                 height={600}
-                style={{ objectFit: 'cover', borderRadius: '20px' }}
+                style={{ objectFit: 'cover', borderRadius: '20px', maxWidth: '100%', height: 'auto' }}
               />
             </div>
           </div>
@@ -171,7 +173,7 @@ function InfoAboutSection() {
 function InfoWhyJoinSection() {
   return (
     <section className={styles.infoWhyJoinSection}>
-      <div className="container">
+      <div className={styles.container}>
         <div className="row align-items-center">
           <div className="col-lg-6">
             <h2 className={styles.infoWhyTitle}>
@@ -217,7 +219,7 @@ function InfoWhyJoinSection() {
                 alt="Students celebrating"
                 width={600}
                 height={600}
-                style={{ objectFit: 'cover', borderRadius: '20px' }}
+                style={{ objectFit: 'cover', borderRadius: '20px', maxWidth: '100%', height: 'auto' }}
               />
             </div>
           </div>
@@ -246,7 +248,7 @@ function InfoOpportunitiesSection({ beasiswaData, lombaData, loading, openLombaM
 
   return (
     <section className={styles.infoOpportunitiesSection}>
-      <div className="container">
+      <div className={styles.container}>
         <div className="text-center mb-5">
           <div className={styles.infoOpportunitiesTitleWrapper}>
             <span className={`${styles.infoOppDot} ${styles.infoOppDotLeft}`}></span>
@@ -420,7 +422,7 @@ function InfoKnowMoreSection() {
 function AppFooter() {
   return (
     <footer className={styles.infoFooter}>
-      <div className="container">
+      <div className={styles.container}>
         <div className={styles.infoFooterContent}>
           <div className={styles.infoFooterLeft}>
             <div className={styles.infoFooterLogoWrapper}>

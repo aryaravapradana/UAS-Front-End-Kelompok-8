@@ -16,6 +16,7 @@ const Header = () => {
   const dropdownRef = useRef(null);
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const pathname = usePathname();
 
   useEffect(() => {
@@ -51,8 +52,33 @@ const Header = () => {
     };
   }, [lastScrollY]);
 
+  // Close mobile menu when route changes
+  useEffect(() => {
+    setIsMobileMenuOpen(false);
+  }, [pathname]);
+
+  // Lock body scroll when mobile menu is open
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [isMobileMenuOpen]);
+
   const toggleDropdown = () => {
     setIsDropdownOpen((prev) => !prev);
+  };
+
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen((prev) => !prev);
+  };
+
+  const closeMobileMenu = () => {
+    setIsMobileMenuOpen(false);
   };
 
   const getLinkClass = (path, activeClass) => {
@@ -64,7 +90,7 @@ const Header = () => {
     <header className={`${styles.navbar} ${!isVisible ? styles.hidden : ''}`}>
       <div className="container d-flex align-items-center justify-content-between">
         {/* Left Side: Logo */}
-        <div className="d-flex align-items-center" style={{ width: '200px' }}>
+        <div className={styles.leftSide}>
           <TransitionLink href="/" className="d-flex align-items-center text-decoration-none">
             <div className={styles.logoContainer}>
               <Image
@@ -79,7 +105,7 @@ const Header = () => {
           </TransitionLink>
         </div>
 
-        {/* Center: Navigation Links */}
+        {/* Center: Navigation Links (Desktop) */}
         <nav className="d-none d-lg-flex align-items-center gap-4 justify-content-center flex-grow-1">
           <TransitionLink href="/" className={getLinkClass('/', 'activeHome')}>Home</TransitionLink>
           <TransitionLink href="/bootcamp" className={getLinkClass('/bootcamp', 'activeBootcamp')}>Bootcamp</TransitionLink>
@@ -90,7 +116,7 @@ const Header = () => {
         </nav>
 
         {/* Right Side: Action Buttons */}
-        <div className="d-flex align-items-center gap-3 justify-content-end" style={{ width: '200px' }}>
+        <div className={styles.rightSide}>
           {!loading && (
             <>
               {isLoggedIn && (
@@ -101,11 +127,38 @@ const Header = () => {
                   {isDropdownOpen && <NotificationDropdown />}
                 </div>
               )}
-              {!isLoggedIn && <LoginButton />}
-              {isLoggedIn && <ProfileButton />}
+              {/* Always show Login/Profile */}
+              <div>
+                {!isLoggedIn && <LoginButton />}
+                {isLoggedIn && <ProfileButton />}
+              </div>
             </>
           )}
+          
+          {/* Hamburger Menu Button */}
+          <button 
+            className={`${styles.hamburger} ${isMobileMenuOpen ? styles.active : ''}`} 
+            onClick={toggleMobileMenu}
+            aria-label="Toggle navigation"
+          >
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
         </div>
+      </div>
+
+      {/* Mobile Navigation Menu Overlay */}
+      <div className={`${styles.mobileNavOverlay} ${isMobileMenuOpen ? styles.open : ''}`} onClick={closeMobileMenu}></div>
+
+      {/* Mobile Navigation Menu */}
+      <div className={`${styles.mobileNav} ${isMobileMenuOpen ? styles.open : ''}`}>
+        <TransitionLink href="/" className={styles.mobileNavLink} onClick={closeMobileMenu}>Home</TransitionLink>
+        <TransitionLink href="/bootcamp" className={styles.mobileNavLink} onClick={closeMobileMenu}>Bootcamp</TransitionLink>
+        <TransitionLink href="/info" className={styles.mobileNavLink} onClick={closeMobileMenu}>Info</TransitionLink>
+        <TransitionLink href="/talk" className={styles.mobileNavLink} onClick={closeMobileMenu}>Talks</TransitionLink>
+        <TransitionLink href="/glory" className={styles.mobileNavLink} onClick={closeMobileMenu}>Glory</TransitionLink>
+        <TransitionLink href="/dashboard" className={styles.mobileNavLink} onClick={closeMobileMenu}>Dashboard</TransitionLink>
       </div>
     </header>
   );

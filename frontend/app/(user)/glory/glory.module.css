@@ -650,20 +650,7 @@
   font-size: 0.9rem;
 }
 
-.trackDetails li:last-child {
-  margin-bottom: 0;
-}
-
-.trackDetails li img {
-  opacity: 0.8;
-}
-
-/* ==================== WHY JOIN SECTION ==================== */
 .whyJoinSection {
-  position: relative;
-  width: 100%;
-  min-height: 100vh;
-  display: flex;
   align-items: center;
   padding: 6rem 0;
   margin: 0;
@@ -1127,11 +1114,6 @@
 
 /* ==================== RESPONSIVE - HERO SECTION ==================== */
 @media (max-width: 767px) {
-  .heroSection {
-    background-size: cover;
-    background-position: center;
-  }
-  
   .heroText h1 {
     font-size: 2rem;
   }
@@ -1598,14 +1580,11 @@
    FOOTER
    ======================================== */
 .infoFooter {
-  background-image: url('/glory/footer.png');
-  background-size: 100% 100%;
-  background-position: center center;
-  background-repeat: no-repeat;
+  background-color: #000000;
   padding: 5rem 0 3rem;
   margin: 0;
   position: relative;
-  color: #000000;
+  color: #ffffff;
 }
 
 .infoFooterContent {
@@ -2105,4 +2084,128 @@
   color: #ffffff;
   font-size: 1.05rem;
   margin-right: 0.5rem;
+}
+
+/* Responsive Footer for Glory Page */
+@media (max-width: 768px) {
+  .infoFooterContent {
+    flex-direction: column;
+    gap: 3rem;
+  }
+
+  .infoFooterLeft,
+  .infoFooterMiddle,
+  .infoFooterRight {
+    flex: 0 0 100%;
+    max-width: 100%;
+    text-align: center;
+  }
+
+  .infoFooterLogoWrapper {
+    justify-content: center;
+  }
+
+  .infoFooterLogoText {
+    text-align: left;
+  }
+}
+
+/* ========================================
+   WINNER SHOWCASE SECTION
+   ======================================== */
+.winnerShowcaseSection {
+  padding: 4rem 0;
+  background-color: #000000;
+}
+
+.winnerCard {
+  display: flex;
+  background: linear-gradient(90deg, #000000 0%, #820000 100%);
+  border: 2px solid #ffffff;
+  border-radius: 20px;
+  overflow: hidden;
+  margin-bottom: 2rem;
+  min-height: 300px;
+  text-align: left;
+}
+
+.winnerCardContent {
+  flex: 1;
+  padding: 3rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+}
+
+.winnerTitle {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 0.5rem;
+  line-height: 1.2;
+  text-align: left;
+}
+
+.winnerSubtitle {
+  font-size: 1.2rem;
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 2rem;
+}
+
+.winnerList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.winnerList li {
+  font-size: 1rem;
+  color: #ffffff;
+  margin-bottom: 0.5rem;
+  display: flex;
+  align-items: Left;
+  gap: 0.5rem;
+}
+
+.winnerCardImageWrapper {
+  flex: 0 0 40%;
+  position: relative;
+  aspect-ratio: 1575 / 1825;
+  background-color: #000000;
+}
+
+.winnerCardImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@media (max-width: 992px) {
+  .winnerCard {
+    flex-direction: column-reverse;
+  }
+
+  .winnerCardImageWrapper {
+    width: 100%;
+    height: auto;
+    flex: none;
+  }
+
+  .winnerCardContent {
+    padding: 2rem;
+  }
+
+  .winnerTitle {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .winnerTitle {
+    font-size: 1.5rem;
+  }
+
+  .winnerSubtitle {
+    font-size: 1rem;
+  }
 }

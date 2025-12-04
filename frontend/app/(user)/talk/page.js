@@ -41,21 +41,55 @@ export default function TalkPage() {
   return (
     <div className={styles.talksPage}>
       <Header />
-      <FadeInOnScroll>
-        <TalksHeroSection />
-      </FadeInOnScroll>
-      <FadeInOnScroll>
-        <TalksAboutSection />
-      </FadeInOnScroll>
-      <FadeInOnScroll>
-        <TalksWhyJoinSection />
-      </FadeInOnScroll>
-      <FadeInOnScroll>
-        <TalksCollaborationSection data={data} loading={loading} />
-      </FadeInOnScroll>
-      <FadeInOnScroll>
-        <WhatsInItForYouSection />
-      </FadeInOnScroll>
+      <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100vh', pointerEvents: 'none', zIndex: 0, overflow: 'visible' }}>
+        <Image
+          src="/decorative-ellipse-blue.svg"
+          alt="Decorative Ellipse Right"
+          width={894}
+          height={824}
+          className={styles.decorativeEllipseRight}
+          unoptimized
+        />
+      </div>
+      <div style={{ position: 'relative', zIndex: 2 }}>
+        <FadeInOnScroll>
+          <TalksHeroSection />
+        </FadeInOnScroll>
+        <FadeInOnScroll>
+          <TalksAboutSection />
+        </FadeInOnScroll>
+        <div style={{ position: 'relative' }}>
+          <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', pointerEvents: 'none', zIndex: 0 }}>
+            <Image
+              src="/decorative-ellipse-blue.svg"
+              alt="Decorative Ellipse Left"
+              width={894}
+              height={824}
+              className={styles.decorativeEllipseWhyLeft}
+              unoptimized
+            />
+            <Image
+              src="/decorative-ellipse-blue.svg"
+              alt="Decorative Ellipse Right"
+              width={894}
+              height={824}
+              className={styles.decorativeEllipseWhyRight}
+              unoptimized
+            />
+          </div>
+          <div style={{ position: 'relative', zIndex: 2 }}>
+            <FadeInOnScroll>
+              <TalksWhyJoinSection />
+            </FadeInOnScroll>
+          </div>
+        </div>
+        <FadeInOnScroll>
+          <TalksCollaborationSection data={data} loading={loading} />
+        </FadeInOnScroll>
+        <FadeInOnScroll>
+          <WhatsInItForYouSection />
+        </FadeInOnScroll>
+      </div>
       <AppFooter />
     </div>
   );
@@ -64,15 +98,7 @@ export default function TalkPage() {
 function TalksHeroSection() {
   return (
     <section className={styles.talksHeroSection}>
-      <Image
-        src="/decorative-ellipse-blue.svg"
-        alt="Decorative Ellipse Right"
-        width={894}
-        height={824}
-        className={styles.decorativeEllipseRight}
-        unoptimized
-      />
-      <div className="container">
+      <div className={styles.container}>
         <div className="row align-items-center min-vh-100">
           <div className="col-lg-6">
             <div className={styles.talksHeroContent}>
@@ -114,7 +140,7 @@ function TalksHeroSection() {
 function TalksAboutSection() {
   return (
     <section className={styles.talksAboutSection}>
-      <div className="container">
+      <div className={styles.container}>
         <div className="row align-items-center">
           <div className="col-lg-6">
             <div className={styles.talksAboutImagesContainer}>
@@ -164,23 +190,7 @@ function TalksAboutSection() {
 function TalksWhyJoinSection() {
   return (
     <section className={styles.talksWhyJoinSection}>
-      <Image
-        src="/decorative-ellipse-blue.svg"
-        alt="Decorative Ellipse Left"
-        width={894}
-        height={824}
-        className={styles.decorativeEllipseWhyLeft}
-        unoptimized
-      />
-      <Image
-        src="/decorative-ellipse-blue.svg"
-        alt="Decorative Ellipse Right"
-        width={894}
-        height={824}
-        className={styles.decorativeEllipseWhyRight}
-        unoptimized
-      />
-      <div className="container">
+      <div className={styles.container}>
         <div className="text-center">
           <h2 className={styles.talksWhyTitle}>Here's Why You Should Join</h2>
           <p className={styles.talksWhySubtitle}>
@@ -268,7 +278,7 @@ function TalksCollaborationSection({ data, loading }) {
 
   return (
     <section className={styles.talksCollaborationSection}>
-      <div className="container">
+      <div className={styles.container}>
         <div className="text-center mb-5">
           <h2 className={styles.talksCollabTitle}>
             Where Collaboration<br />
@@ -410,7 +420,7 @@ function WhatsInItForYouSection() {
 function AppFooter() {
   return (
     <footer className={styles.footer}>
-      <div className="container">
+      <div className={styles.container}>
         <div className={styles.footerContent}>
           {/* Left Column - UCCD Description */}
           <div className={styles.footerLeft}>

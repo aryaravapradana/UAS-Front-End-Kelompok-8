@@ -11,6 +11,9 @@ const TransitionLink = ({ href, children, ...props }) => {
 
   const handleClick = (e) => {
     e.preventDefault();
+    if (props.onClick) {
+      props.onClick(e);
+    }
     if (isCurrentPage) {
       return; // Do nothing if already on the page
     }

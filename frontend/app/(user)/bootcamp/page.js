@@ -53,6 +53,22 @@ export default function BootcampPage() {
           className={styles.heroGearBottomRight}
           unoptimized
         />
+        <Image
+          src="/decorative-ellipse.svg"
+          alt="Decorative Ellipse"
+          width={894}
+          height={824}
+          className={styles.decorativeEllipse}
+          unoptimized
+        />
+        <Image
+          src="/decorative-ellipse.svg"
+          alt="Decorative Ellipse Right"
+          width={894}
+          height={824}
+          className={styles.decorativeEllipseRight}
+          unoptimized
+        />
       </div>
       <div style={{ position: 'relative', zIndex: 20, overflow: 'visible' }}>
         <HeroSection />
@@ -63,7 +79,33 @@ export default function BootcampPage() {
         </FadeInOnScroll>
       </div>
       <FadeInOnScroll>
-        <ChooseTrackSection activeTrack={activeTrack} setActiveTrack={setActiveTrack} openDetailModal={openDetailModal} />
+        <div style={{ position: 'relative' }}>
+          <Image
+            src="/decorative-ellipse.svg"
+            alt="Decorative Ellipse Track"
+            width={894}
+            height={824}
+            className={styles.decorativeEllipseTrack}
+            unoptimized
+          />
+          <Image
+            src="/gearsingle.png"
+            alt="Track Gear Left"
+            width={400}
+            height={400}
+            className={styles.trackGearLeft}
+            unoptimized
+          />
+          <Image
+            src="/gearsingle.png"
+            alt="Track Gear Right"
+            width={400}
+            height={400}
+            className={styles.trackGearRight}
+            unoptimized
+          />
+          <ChooseTrackSection activeTrack={activeTrack} setActiveTrack={setActiveTrack} openDetailModal={openDetailModal} />
+        </div>
       </FadeInOnScroll>
       <FadeInOnScroll>
         <WhyJoinSection />
@@ -86,22 +128,6 @@ export default function BootcampPage() {
 function HeroSection() {
   return (
     <section className={styles.heroSection}>
-      <Image
-        src="/decorative-ellipse.svg"
-        alt="Decorative Ellipse"
-        width={894}
-        height={824}
-        className={styles.decorativeEllipse}
-        unoptimized
-      />
-      <Image
-        src="/decorative-ellipse.svg"
-        alt="Decorative Ellipse Right"
-        width={894}
-        height={824}
-        className={styles.decorativeEllipseRight}
-        unoptimized
-      />
       <FadeInOnScroll>
         <div className={styles.heroContent}>
           <div className={styles.heroText}>
@@ -222,30 +248,6 @@ function ChooseTrackSection({ activeTrack, setActiveTrack, openDetailModal }) {
 
   return (
     <section className={styles.chooseTrackSection}>
-      <Image
-        src="/decorative-ellipse.svg"
-        alt="Decorative Ellipse Track"
-        width={894}
-        height={824}
-        className={styles.decorativeEllipseTrack}
-        unoptimized
-      />
-      <Image
-        src="/gearsingle.png"
-        alt="Track Gear Left"
-        width={400}
-        height={400}
-        className={styles.trackGearLeft}
-        unoptimized
-      />
-      <Image
-        src="/gearsingle.png"
-        alt="Track Gear Right"
-        width={400}
-        height={400}
-        className={styles.trackGearRight}
-        unoptimized
-      />
       <div className="container text-center">
         <div className={styles.titleWrapper} style={{ '--line-left-offset': '-140px', '--line-left-length': '140px', '--line-right-offset': '-140px', '--line-right-length': '140px' }}>
           <span className={`${styles.dot} ${styles.dotLeft}`}></span>

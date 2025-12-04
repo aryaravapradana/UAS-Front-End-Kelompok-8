@@ -149,3 +149,46 @@
   margin-bottom: 1.5rem;
   text-align: center;
 }
+
+/* Responsive Media Queries */
+@media (max-width: 768px) {
+  .main {
+    padding: 2rem 1rem;
+  }
+
+  .formContainer {
+    padding: 1.5rem;
+  }
+
+  .title {
+    font-size: 1.75rem;
+  }
+
+  .sectionTitle {
+    font-size: 1.25rem;
+  }
+
+  .emailGroup {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .verificationStatus {
+    text-align: center;
+    margin-top: 0.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .main {
+    padding: 1rem;
+  }
+
+  .formContainer {
+    padding: 1rem;
+  }
+
+  .title {
+    font-size: 1.5rem;
+  }
+}

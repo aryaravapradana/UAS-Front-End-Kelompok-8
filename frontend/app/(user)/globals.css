@@ -7,6 +7,15 @@
   padding: 0;
 }
 
+html,
+body {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+}
+
 html {
   scroll-behavior: smooth;
 }
@@ -14,9 +23,9 @@ html {
 body {
   font-family: "Helvetica Neue", sans-serif;
   font-weight: 500;
-  overflow-x: hidden;
   background-color: #000000;
   color: #ffffff;
+  position: relative;
 }
 
 ::selection {
