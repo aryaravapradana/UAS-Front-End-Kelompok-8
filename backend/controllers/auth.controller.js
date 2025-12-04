@@ -122,20 +122,26 @@ exports.verifyEmail = async (req, res) => {
 };
 
 exports.resendVerificationEmail = async (req, res) => {
+  console.log('Resend Verification Request for:', req.member.nim);
   try {
     const member = await prisma.member.findUnique({ where: { nim: req.member.nim } });
 
     if (!member) {
+      console.log('Member not found:', req.member.nim);
       return res.status(404).json({ message: 'Member not found.' });
     }
 
     if (member.isEmailVerified) {
+      console.log('Email already verified for:', req.member.nim);
       return res.status(400).json({ message: 'Email is already verified.' });
     }
 
     if (!member.email) {
+      console.log('No email found for:', req.member.nim);
       return res.status(400).json({ message: 'No email address found for this account.' });
     }
+
+    console.log('Sending verification email to:', member.email);
 
     // Ensure there's a token
     const verificationToken = member.emailVerificationToken || crypto.randomBytes(32).toString('hex');
@@ -147,8 +153,10 @@ exports.resendVerificationEmail = async (req, res) => {
 
     await sendVerificationEmail(member.email, verificationToken);
 
+    console.log('Verification email sent successfully to:', member.email);
     res.status(200).json({ message: 'Verification email sent successfully.' });
   } catch (error) {
+    console.error('Resend Verification Error:', error);
     res.status(500).json({ message: 'Something went wrong', error: error.message });
   }
 };
