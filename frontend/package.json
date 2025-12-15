@@ -11,7 +11,7 @@
   "dependencies": {
     "@fortawesome/fontawesome-free": "^7.1.0",
     "bootstrap": "^5.3.8",
-    "next": "16.0.1",
+    "next": "16.0.10",
     "react": "19.2.0",
     "react-dom": "19.2.0",
     "react-hot-toast": "^2.6.0"
